@@ -39,6 +39,10 @@ ALLOWED_HOSTS = ['localhost', 'social-sess-back.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'dj_database_url',
+    'environ',
+    'whitenoise',
+    'gunicorn',
     'corsheaders',
     'rest_framework',
     'questions_api',
