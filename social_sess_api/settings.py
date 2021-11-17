@@ -39,6 +39,10 @@ ALLOWED_HOSTS = ['localhost', 'social-sess-back.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'dj_database_url',
+    'environ',
+    'whitenoise',
+    'gunicorn',
     'corsheaders',
     'rest_framework',
     'questions_api',
@@ -83,7 +87,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'social_sess_api.wsgi.application'
- 
+
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
