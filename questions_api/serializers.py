@@ -7,7 +7,7 @@ from django.contrib.auth.hashers import make_password, check_password
 class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
-        fields = ('id', 'question','comment')
+        fields = ('id', 'question')
 
 
 class UserAccountSerializer(serializers.ModelSerializer):
@@ -32,4 +32,4 @@ class UserAccountSerializer(serializers.ModelSerializer):
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = ('id','comment')
+        fields = ('id','comment','question')
