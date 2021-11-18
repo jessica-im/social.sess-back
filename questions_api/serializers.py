@@ -13,18 +13,18 @@ class QuestionSerializer(serializers.ModelSerializer):
 class UserAccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserAccount
-        fields = ('id', 'email', 'password')
+        fields = ('id', 'username', 'password')
 
     def create(self, validated_data):
         user = UserAccount.objects.create(
-        email = validated_data['email'],
+        username = validated_data['username'],
         password = make_password(validated_data['password'])
         )
         user.save()
         return user
 
     def update(self, instance, validated_data):
-        user = UserAccount.objects.get(email=validated_data["email"])
+        user = UserAccount.objects.get(username=validated_data["username"])
         user.password = make_password(validated_data["password"])
         user.save()
-        return user    
+        return user
