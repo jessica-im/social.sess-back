@@ -1,15 +1,24 @@
+from django.db.models.query import QuerySet
 from django.shortcuts import render
 from rest_framework import generics
-from .serializers import QuestionSerializer
+from .serializers import CommentSerializer, QuestionSerializer
 from .serializers import UserAccountSerializer
 from .models import Question
 from .models import UserAccount
-
+from .models import Comment
 from django.contrib.auth.hashers import make_password, check_password
 from django.http import JsonResponse
 import json
 
 # Create your views here.
+
+class CommentList(generics.ListCreateAPIView):
+    queryset= Comment.objects.all().order_by('id')
+    serializer_class = CommentSerializer
+
+class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Comment.objects.all().order_by('id')
+    serializer_class = CommentSerializer
 
 class QuestionList(generics.ListCreateAPIView):
     queryset = Question.objects.all().order_by('id')
