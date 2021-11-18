@@ -29,7 +29,7 @@ class UserAccountDetail(generics.RetrieveUpdateDestroyAPIView):
 
 def check_login(request):
     if request.method == 'GET':
-        return JsonResponse({})
+        return JsonResponse({}, '')
 
     if request.method == 'PUT':
         jsonRequest = json.loads(request.body)
@@ -40,6 +40,6 @@ def check_login(request):
             if check_password(password, user.password):
                 return JsonResponse({'id': user.id, 'username': user.username})
             else:
-                return (JsonResponse({}), 'password not found')
+                return JsonResponse({}, 'password not found')
         else:
-            return (JsonResponse({'username'}), 'username not found')
+            return JsonResponse({}, 'username not found')
