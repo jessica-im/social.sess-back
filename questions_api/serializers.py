@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Question
+from .models import Comment, Question
 from .models import UserAccount
 
 from django.contrib.auth.hashers import make_password, check_password
@@ -7,13 +7,13 @@ from django.contrib.auth.hashers import make_password, check_password
 class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
-        fields = ('id', 'question')
+        fields = ('id', 'question','comment')
 
 
 class UserAccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserAccount
-        fields = ('id', 'username', 'password')
+        fields = ('id', 'username', 'password','comment','question')
 
     def create(self, validated_data):
         user = UserAccount.objects.create(
@@ -28,3 +28,8 @@ class UserAccountSerializer(serializers.ModelSerializer):
         user.password = make_password(validated_data["password"])
         user.save()
         return user
+
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ('id','comment')

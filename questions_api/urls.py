@@ -8,4 +8,6 @@ urlpatterns = [
     path('api/useraccount/login', csrf_exempt(views.check_login), name="check_login"),
     path('api/questions', views.QuestionList.as_view(), name='question_list'),
     path('api/questions/<int:pk>', views.QuestionDetail.as_view(), name='question_detail'),
+    path('api/comments',views.CommentList.as_view(),name='comment_list'),
+
 ]
