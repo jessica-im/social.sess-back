@@ -11,6 +11,9 @@ from django.http import JsonResponse
 import json
 
 # Create your views here.
+class CommentGrab(generics.ListCreateAPIView):
+    queryset = Comment.objects.filter('question_id')
+    serializer_class = QuestionSerializer
 
 class CommentList(generics.ListCreateAPIView):
     queryset= Comment.objects.all().order_by('id')
