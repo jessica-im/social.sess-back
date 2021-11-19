@@ -71,6 +71,9 @@ MIDDLEWARE = [
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_ORIGIN_WHITELIST=(
+    'https://social-sess-front.herokuapp.com/'
+)
 ROOT_URLCONF = 'social_sess_api.urls'
 
 TEMPLATES = [
