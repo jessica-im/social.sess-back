@@ -12,8 +12,8 @@ import json
 
 # Create your views here.
 class CommentGrab(generics.ListCreateAPIView):
-    queryset = Comment.objects.filter('question_id')
-    serializer_class = QuestionSerializer
+    queryset = Comment.objects.question().order_by('id')
+    serializer_class = CommentSerializer
 
 class CommentList(generics.ListCreateAPIView):
     queryset= Comment.objects.all().order_by('id')
