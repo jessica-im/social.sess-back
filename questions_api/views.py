@@ -1,19 +1,15 @@
-from django.db.models.query import QuerySet
 from django.shortcuts import render
 from rest_framework import generics
-from .serializers import CommentSerializer, QuestionSerializer
+from .serializers import QuestionSerializer
 from .serializers import UserAccountSerializer
 from .models import Question
 from .models import UserAccount
-from .models import Comment
+
 from django.contrib.auth.hashers import make_password, check_password
 from django.http import JsonResponse
 import json
 
 # Create your views here.
-class CommentGrab(generics.ListCreateAPIView):
-    queryset = Comment.objects.question().order_by('id')
-    serializer_class = CommentSerializer
 
 class CommentList(generics.ListCreateAPIView):
     queryset= Comment.objects.all().order_by('id')
@@ -41,7 +37,7 @@ class UserAccountDetail(generics.RetrieveUpdateDestroyAPIView):
 
 def check_login(request):
     if request.method == 'GET':
-        return JsonResponse({}, '')
+        return JsonResponse({})
 
     if request.method == 'PUT':
         jsonRequest = json.loads(request.body)
@@ -52,6 +48,6 @@ def check_login(request):
             if check_password(password, user.password):
                 return JsonResponse({'id': user.id, 'username': user.username})
             else:
-                return JsonResponse({}, 'password not found')
+                return JsonResponse({})
         else:
-            return JsonResponse({}, 'username not found')
+            return JsonResponse({})
